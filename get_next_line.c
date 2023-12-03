@@ -6,12 +6,20 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 17:53:19 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/02/25 18:04:28 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/03 01:10:06 by lithium       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/**
+ * @brief A function to elongate the line with the buffer.
+ *
+ * @param line The line to elongate.
+ * @param buff The buffer to elongate the line with.
+ * @param bufflen The length of the buffer.
+ * @return char* The new line.
+ */
 char	*concat(char *line, char *buff, int bufflen)
 {
 	t_concat_vars	v;
@@ -37,6 +45,14 @@ char	*concat(char *line, char *buff, int bufflen)
 	return (free(line), v.new);
 }
 
+/**
+ * @brief A wrapper for read() so it modifies the variables in the struct.
+ *
+ * @param buffer The struct containing the buffer.
+ * @param line The line read from the file descriptor.
+ * @param fd The file descriptor to read from.
+ * @return char* The line read from the file descriptor.
+ */
 char	*read_line(t_gnl_buffer *buffer, char *line, int fd)
 {
 	int	found;
@@ -63,6 +79,15 @@ char	*read_line(t_gnl_buffer *buffer, char *line, int fd)
 	return (line);
 }
 
+/**
+ * @brief Get the remaining buffer if a newline is found.
+ *
+ * @note This function is only called when a newline is found in the buffer. And
+ * the remaining buffer is put in the beginning of the buffer. This is done so
+ * the next call to get_next_line it will read the remaining buffer first.
+ *
+ * @param buffer
+ */
 void	get_remaining_buff(t_gnl_buffer *buffer)
 {
 	int	i;
@@ -83,6 +108,12 @@ void	get_remaining_buff(t_gnl_buffer *buffer)
 	buffer->length = j;
 }
 
+/**
+ * @brief get_next_line reads a line from a file descriptor and returns it.
+ *
+ * @param fd The file descriptor to read from.
+ * @return char* The line read from the file descriptor.
+ */
 char	*get_next_line(int fd)
 {
 	static t_gnl_buffer	buffer;

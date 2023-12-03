@@ -6,12 +6,19 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 13:05:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/26 00:40:22 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/03 01:11:11 by lithium       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/**
+ * @brief A simple strchr that only looks for '\n'.
+ *
+ * @param str The string to search.
+ * @param length The length of the string. (The remaining length of the buffer)
+ * @return char* The pointer to the first '\n' in the string.
+ */
 char	*ft_strchr_nl(char *str, int length)
 {
 	int	i;
@@ -26,6 +33,13 @@ char	*ft_strchr_nl(char *str, int length)
 	return (NULL);
 }
 
+/**
+ * @brief A scuffed memcpy that copies the remaining buffer to the beginning.
+ *
+ * @param x The struct containing the concat variables.
+ * @param bufflen The length of the buffer.
+ * @param buff The buffer to copy from.
+ */
 void	ft_copy_magic(t_concat_vars *x, int bufflen, char *buff)
 {
 	while (x->j < bufflen && buff[x->j] != '\0' && !x->found)

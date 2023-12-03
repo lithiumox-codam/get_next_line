@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/25 16:06:21 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/03 00:59:50 by lithium       ########   odam.nl         */
+/*   Updated: 2023/12/03 01:14:15 by lithium       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,26 @@
 #  define BUFFER_SIZE 1
 # endif // BUFFER_SIZE
 
+/**
+ * @brief The struct containing the buffer and its length.
+ *
+ * @note This is made static so it can be used in multiple function calls.
+ * @param buff The buffer. (Size is defined by BUFFER_SIZE)
+ * @param length The current length of the buffer. Amount can vary from
+ * The BUFFER_SIZE to any remainder of the buffer from a previous call.
+ */
 typedef struct s_gnl_buffer
 {
 	char	buff[BUFFER_SIZE];
 	int		length;
 }			t_gnl_buffer;
 
+/**
+ * @brief Scuffed struct that makes the code smaller not perticularly
+ * clearer.
+ *
+ * @warning PLEASE DO NOT USE THIS IN YOUR CODE. IT IS NOT GOOD PRACTICE.
+ */
 typedef struct s_concat_vars
 {
 	size_t	size;
